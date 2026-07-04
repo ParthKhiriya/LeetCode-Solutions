@@ -3,10 +3,10 @@ public:
     int lengthOfLongestSubstring(string s) {
         int n = s.size();
         vector<bool> hash(128, false);
+        int maxLen = 0;
 
         int left = 0;
         int right = 0;
-        int maxm = 0;
 
         while(right < n) {
             while(hash[s[right]]) {
@@ -16,9 +16,9 @@ public:
 
             hash[s[right]] = true;
             right++;
-            maxm = max(maxm, right-left);
+            maxLen = max(maxLen, right-left);
         }
 
-        return maxm;
+        return maxLen;
     }
 };
