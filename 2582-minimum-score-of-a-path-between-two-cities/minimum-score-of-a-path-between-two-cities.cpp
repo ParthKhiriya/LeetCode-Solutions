@@ -10,13 +10,13 @@ public:
             adjList[v].push_back({u, wt});
         }
 
+        // Now, since it is given that there exist atleast one path between 1 and n, that means 1 and n are always in the same component. 
+        int min_score = INT_MAX;
         queue<int> q;
         q.push(1);
 
         vector<bool> vis(n+1, false);
         vis[1] = true;
-
-        int minScore = INT_MAX;
 
         while(!q.empty()) {
             int node = q.front();
@@ -24,9 +24,8 @@ public:
 
             for(auto it: adjList[node]) {
                 int adjNode = it.first;
-                int edgeWeight = it.second;
-
-                minScore = min(minScore, edgeWeight);
+                int adjWeight = it.second;
+                min_score = min(min_score, adjWeight);
 
                 if(!vis[adjNode]) {
                     vis[adjNode] = true;
@@ -35,6 +34,7 @@ public:
             }
         }
 
-        return minScore;
+        return min_score;
+
     }
 };
