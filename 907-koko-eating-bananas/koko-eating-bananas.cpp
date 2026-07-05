@@ -6,13 +6,14 @@ public:
             max_element = max(max_element, pile);
         }
 
+        // So, now our answer space is from 1 to max_element
         int low = 1;
         int high = max_element;
         int best_score = -1;
 
         while(low <= high) {
-            int mid = low + (high-low)/2;
-
+            int mid = low + (high - low)/2;
+            
             if(check(mid, piles, h)) {
                 best_score = mid;
                 high = mid - 1;
@@ -25,12 +26,10 @@ public:
     }
 
     bool check(int mid, vector<int>& piles, int h) {
-        int n = piles.size();
         long long time = 0;
-
         for(int pile: piles) {
-            int thisPile = ceil((double)pile/mid);
-            time += thisPile;
+            int currTime = ceil((double)pile/mid);
+            time += currTime;
             if(time > h) {
                 return false;
             }
