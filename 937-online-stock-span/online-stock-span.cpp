@@ -8,10 +8,9 @@ public:
         int newSpan = 1;
 
         while(!st.empty() && price >= st.top().first) {
-            int lastTop = st.top().first;
-            int lastSpan = st.top().second;
+            int oldSpan = st.top().second;
             st.pop();
-            newSpan += lastSpan;
+            newSpan += oldSpan;
         }
 
         st.push({price, newSpan});
