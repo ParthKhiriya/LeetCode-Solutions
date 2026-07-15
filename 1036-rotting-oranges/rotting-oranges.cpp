@@ -4,45 +4,43 @@ public:
         int m = grid.size();
         int n = grid[0].size();
         int count = 0;
+        int time = 0;
 
-        queue<pair<pair<int, int>, int>> q;
+        queue<pair<int, int>> q;
         for(int i=0; i<m; i++) {
             for(int j=0; j<n; j++) {
                 if(grid[i][j] == 2) {
-                    q.push({{i, j}, 0});
+                    q.push({i, j});
                 } else if(grid[i][j] == 1) {
                     count++;
                 }
             }
         }
 
-        vector<vector<bool>> vis(m, vector<bool>(n, false));
-
         int delRow[4] = {-1, 0, 1, 0};
         int delCol[4] = {0, 1, 0, -1};
 
-        while(!q.empty()) {
-            int row = q.front().first.first;
-            int col = q.front().first.second;
-            int time = q.front().second;
-            q.pop();
+        while(count > 0 && !q.empty()) {
+            int length = q.size();
+            for(int i=0; i<length; i++) {
+                int row = q.front().first;
+                int col = q.front().second;
+                q.pop();
 
-            for(int i=0; i<4; i++) {
-                int newRow = row + delRow[i];
-                int newCol = col + delCol[i];
+                for(int i=0; i<4; i++) {
+                    int newRow = row + delRow[i];
+                    int newCol = col + delCol[i];
 
-                if(newRow >= 0 && newRow < m && newCol >= 0 && newCol < n && !vis[newRow][newCol] && grid[newRow][newCol] == 1) {
-                    vis[newRow][newCol] = true;
-                    int newTime = time + 1;
-                    q.push({{newRow, newCol}, newTime});
-                    count--;
-                    if(count == 0) {
-                        return newTime;
+                    if(newRow >= 0 && newRow < m && newCol >= 0 && newCol < n && grid[newRow][newCol] == 1) {
+                        grid[newRow][newCol] = 2;
+                        q.push({newRow, newCol});
+                        count--;
                     }
                 }
             }
+            time++;
         }
 
-        return count == 0 ? 0 : -1;
+        return count == 0 ? time : -1;
     }
 };
