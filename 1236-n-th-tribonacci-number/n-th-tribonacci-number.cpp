@@ -5,14 +5,17 @@ public:
         if(n == 1) return 1;
         if(n == 2) return 1;
 
-        vector<int> dp(n+1, 0);
-        dp[1] = 1;
-        dp[2] = 1;
+        int zero = 0;
+        int one = 1;
+        int two = 1;
 
         for(int i=3; i<=n; i++) {
-            dp[i] = dp[i-1] + dp[i-2] + dp[i-3];
+            int result = zero + one + two;
+            zero = one;
+            one = two;
+            two = result;
         }
 
-        return dp[n];
+        return two;
     }
 };
