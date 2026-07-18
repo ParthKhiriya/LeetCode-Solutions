@@ -6,12 +6,12 @@ public:
             max_val = max(max_val, num);
         }
 
-        vector<long long> count(max_val + 1, 0);
+        vector<long long> count(max_val+1, 0);
         for(int num: nums) {
             count[num]++;
         }
 
-        vector<long long> exact_gcd(max_val + 1, 0);
+        vector<long long> gcd(max_val+1, 0);
         for(int i=max_val; i>=1; i--) {
             long long mult_count = 0;
 
@@ -19,23 +19,22 @@ public:
                 mult_count += count[j];
             }
 
-            long long pairs = mult_count * (mult_count - 1)/2;
+            long long pairs = mult_count * (mult_count - 1) / 2;
 
             for(int j=2*i; j<=max_val; j+=i) {
-                pairs -= exact_gcd[j];
+                pairs -= gcd[j];
             }
 
-            exact_gcd[i] = pairs;
+            gcd[i] = pairs;
         }
 
-        vector<long long> prefix(max_val + 1, 0);
+        vector<long long> prefix(max_val+1, 0);
         for(int i=1; i<=max_val; i++) {
-            prefix[i] = prefix[i-1] + exact_gcd[i];
+            prefix[i] = prefix[i-1] + gcd[i];
         }
 
         vector<int> ans;
-        ans.reserve(queries.size());
-        for(long long q: queries) {
+        for(auto q: queries) {
             int index = upper_bound(prefix.begin(), prefix.end(), q) - prefix.begin();
             ans.push_back(index);
         }
