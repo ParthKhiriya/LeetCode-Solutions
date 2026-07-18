@@ -10,21 +10,21 @@
  * };
  */
 class Solution {
-private:
-    int dfs(TreeNode* root, int& maxm) {
+private: 
+    int recurse(TreeNode* root, int& diameter) {
         if(root == nullptr) return 0;
 
-        int left = dfs(root->left, maxm);
-        int right = dfs(root->right, maxm);
-        maxm = max(maxm, left + right);
+        int left = recurse(root->left, diameter);
+        int right = recurse(root->right, diameter);
+        diameter = max(diameter, left+right);
 
         return 1 + max(left, right);
     }
 
 public:
     int diameterOfBinaryTree(TreeNode* root) {
-        int maxm = INT_MIN;
-        dfs(root, maxm);
-        return maxm;
+        int diameter = 0;
+        recurse(root, diameter);
+        return diameter;
     }
 };
