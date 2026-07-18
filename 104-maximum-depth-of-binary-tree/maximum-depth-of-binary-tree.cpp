@@ -14,25 +14,24 @@ public:
     int maxDepth(TreeNode* root) {
         if(root == nullptr) return 0;
 
-        // Creating a queue to store the nodes as we traverse. 
         queue<TreeNode*> q;
         q.push(root);
-        int height = 0;
+        int depth = 0;
 
         while(!q.empty()) {
-            int levelSize = q.size();
+            int length = q.size();
 
-            for(int i=0; i<levelSize; i++) {
-                TreeNode* curr = q.front();
+            for(int i=0; i<length; i++) {
+                TreeNode* node = q.front();
                 q.pop();
 
-                if(curr->left) q.push(curr->left);
-                if(curr->right) q.push(curr->right);
+                if(node->left) q.push(node->left);
+                if(node->right) q.push(node->right);
             }
-            
-            height++;
+
+            depth++;
         }
 
-        return height;
+        return depth;
     }
 };
