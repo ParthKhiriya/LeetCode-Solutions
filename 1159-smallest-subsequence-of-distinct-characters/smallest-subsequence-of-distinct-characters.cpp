@@ -2,14 +2,13 @@ class Solution {
 public:
     string smallestSubsequence(string s) {
         int n = s.size();
-
         vector<int> lastIndex(26, 0);
         for(int i=0; i<n; i++) {
             lastIndex[s[i] - 'a'] = i;
         }
 
-        vector<bool> inStack(26, false);
         string st = "";
+        vector<bool> inStack(26, false);
 
         for(int i=0; i<n; i++) {
             char c = s[i];
