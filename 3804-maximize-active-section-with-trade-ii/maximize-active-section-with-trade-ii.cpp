@@ -1,9 +1,3 @@
-#include <vector>
-#include <string>
-#include <algorithm>
-
-using namespace std;
-
 class Solution {
     struct Node {
         long long maxZ, maxZ_excl_right, maxZ_excl_left;
