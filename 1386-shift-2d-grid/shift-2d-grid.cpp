@@ -4,19 +4,18 @@ public:
         int m = grid.size();
         int n = grid[0].size();
         int elements = m * n;
-
         vector<vector<int>> ans(m, vector<int>(n, 0));
 
-        for(int row = 0; row < m; row++) {
-            for(int col = 0; col < n; col++) {
-                int index = row * n + col;
+        for(int i=0; i<m; i++) {
+            for(int j=0; j<n; j++) {
+                int index = i*n + j;
 
                 int newIndex = (index + k) % elements;
 
                 int newRow = newIndex / n;
                 int newCol = newIndex % n;
 
-                ans[newRow][newCol] = grid[row][col];
+                ans[newRow][newCol] = grid[i][j];
             }
         }
 
