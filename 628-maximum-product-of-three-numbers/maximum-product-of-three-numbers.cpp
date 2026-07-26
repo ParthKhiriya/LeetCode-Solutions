@@ -6,9 +6,8 @@ public:
 
         sort(nums.begin(), nums.end());
         int first = nums[0]*nums[1]*nums[n-1];
-        int second = nums[0]*nums[n-2]*nums[n-1];
-        int third = nums[n-3]*nums[n-2]*nums[n-1];
+        int second = nums[n-3]*nums[n-2]*nums[n-1];
 
-        return max(max(first, second), third);
+        return max(first, second);
     }
 };
