@@ -1,7 +1,7 @@
 class Solution {
 public:
     int smallestNumber(int n, int t) {
-        for(int i=n; i<INT_MAX; i++) {
+        for(int i=n; i<n+10; i++) {
             int num = i;
             int mult = 1;
             while(num > 0) {
