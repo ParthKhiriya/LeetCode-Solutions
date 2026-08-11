@@ -3,12 +3,10 @@ public:
     int missingInteger(vector<int>& nums) {
         int n = nums.size();
         if(n == 1) return nums[0] + 1;
-        int prefixSum = nums[0];
-        int index = 0;
 
+        int prefixSum = nums[0];
         for(int i=1; i<n; i++) {
             if(nums[i] != nums[i-1] + 1) {
-                index = i;
                 break;
             }
             prefixSum += nums[i];
