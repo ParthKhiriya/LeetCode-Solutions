@@ -10,13 +10,12 @@ public:
 
         while(right < n) {
             mpp[nums[right]]++;
-            if(mpp[nums[right]] > k) {
-                count = max(count, right-left);
-                while(left < right && mpp[nums[right]] > k) {
-                    mpp[nums[left]]--;
-                    left++;
-                }
+            
+            while(mpp[nums[right]] > k) {
+                mpp[nums[left]]--;
+                left++;
             }
+
             right++;
             count = max(count, right-left);
         }
