@@ -7,10 +7,10 @@ public:
         int left = 0;
         int maxm = 0;
 
-        for(int right = 0; right < n; right++) {
+        for(int right=0; right<n; right++) {
             mpp[s[right]]++;
 
-            while(left <= right && mpp[s[right]] > 2) {
+            while(mpp[s[right]] > 2) {
                 mpp[s[left]]--;
                 left++;
             }
