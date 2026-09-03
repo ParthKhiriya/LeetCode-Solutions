@@ -1,45 +1,21 @@
 class Solution {
 public:
     bool uniformArray(vector<int>& nums1) {
-        int n = nums1.size();
-        
-        bool odd = true;
-        bool even = true;
+        int min_odd = INT_MAX;
+        int min_even = INT_MAX;
 
-        // Let us first do the odd case check
-        for(int i=0; i<n; i++) {
+        for(int i=0; i<nums1.size(); i++) {
             if(nums1[i] % 2 == 0) {
-                bool found = false;
-                for(int j=0; j<n; j++) {
-                    if(i != j && ((nums1[i] - nums1[j]) % 2 != 0) && (nums1[i] - nums1[j] >= 1)) {
-                        found = true;
-                        break;
-                    }
-                }
-                if(!found) {
-                    odd = false;
-                    break;
-                }
+                min_even = min(min_even, nums1[i]);
+            } else {
+                min_odd = min(min_odd, nums1[i]);
             }
         }
 
-        // Now let us check for the even case
-        for(int i=0; i<n; i++) {
-            if(nums1[i] % 2 != 0) {
-                bool found = false;
-                for(int j=0; j<n; j++) {
-                    if(i != j && ((nums1[i] - nums1[j]) % 2 == 0) && (nums1[i] - nums1[j] >= 1)) {
-                        found = true;
-                        break;
-                    }
-                }
-                if(!found) {
-                    even = false;
-                    break;
-                }
-            }
+        if(min_odd == INT_MAX) {
+            return true;
         }
 
-        return odd || even; 
+        return min_odd < min_even;
     }
 };

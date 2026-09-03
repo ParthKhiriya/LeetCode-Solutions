@@ -1,6 +1,6 @@
 # 📝 3876. Construct Uniform Parity Array II (LeetCode)
 
-🔗 [Problem Link](https://leetcode.com/problems/construct-uniform-parity-array-ii)
+🔗 [Problem Link](https://leetcode.com/problems/construct-uniform-parity-array-ii/?envType=daily-question&envId=2026-09-03)
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-orange) ![Language](https://img.shields.io/badge/Language-C++-blue)
 
