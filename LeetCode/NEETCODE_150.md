@@ -11,7 +11,7 @@ Track your progress on the NeetCode 150 roadmap practice problems.
 
 ### 📂 Arrays & Hashing
 - [ ] Contains Duplicate
-- [x] [Valid Anagram](./C++/Easy/242. Valid Anagram/)
+- [x] [Valid Anagram](./Python/Easy/242. Valid Anagram/)
 - [ ] Two Sum
 - [ ] Group Anagrams
 - [ ] Top K Frequent Elements

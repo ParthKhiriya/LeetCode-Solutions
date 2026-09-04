@@ -76,7 +76,7 @@ Track your progress on the Grind 75 coding interview preparation list.
 - [ ] Longest Substring Without Repeating Characters
 - [ ] Longest Repeating Character Replacement
 - [ ] Minimum Window Substring
-- [x] [Valid Anagram](./C++/Easy/242. Valid Anagram/)
+- [x] [Valid Anagram](./Python/Easy/242. Valid Anagram/)
 - [ ] Group Anagrams
 - [ ] Valid Parentheses
 - [ ] Valid Palindrome
