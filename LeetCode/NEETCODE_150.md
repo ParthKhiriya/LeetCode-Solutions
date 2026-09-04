@@ -22,7 +22,7 @@ Track your progress on the NeetCode 150 roadmap practice problems.
 
 ### 📂 Two Pointers
 - [ ] Valid Palindrome
-- [x] [Two Sum II - Input Array Is Sorted](./C++/Medium/167. Two Sum II - Input Array Is Sorted/)
+- [x] [Two Sum II - Input Array Is Sorted](./Python/Medium/167. Two Sum II - Input Array Is Sorted/)
 - [ ] 3Sum
 - [ ] Container With Most Water
 - [ ] Trapping Rain Water
