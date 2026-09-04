@@ -169,7 +169,7 @@ Track your progress on the NeetCode 150 roadmap practice problems.
 - [ ] Minimum Interval to Include Each Query
 
 ### 📂 Bit Manipulation
-- [x] [Single Number](./C++/Easy/136. Single Number/)
+- [x] [Single Number](./Python/Easy/136. Single Number/)
 - [ ] Number of 1 Bits
 - [ ] Counting Bits
 - [ ] Reverse Bits
