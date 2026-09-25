@@ -1,28 +1,47 @@
+using vvi = vector<vector<int>>;
+using vvc = vector<vector<char>>;
+using vvb = vector<vector<bool>>;
+
 class Solution {
-public:
-    int delRow[4] = {-1, 0, 1, 0};
-    int delCol[4] = {0, 1, 0, -1};
+private: 
+    void bfs(int i, int j, vvc& grid, vvb& vis, int& islands, int m, int n) {
+        queue<pair<int, int>> q;
+        q.push({i, j});
+        vis[i][j] = true;
 
-    void dfs(int row, int col, vector<vector<char>>& grid) {
-        if(row < 0 || col < 0 || row >= grid.size() || col >= grid[0].size() || grid[row][col] == '0') {
-            return;
-        }
+        int delRow[4] = {-1, 0, 1, 0};
+        int delCol[4] = {0, 1, 0, -1};
 
-        grid[row][col] = '0';
-        for(int i=0; i<4; i++) {
-            dfs(row+delRow[i], col+delCol[i], grid);
+        while(!q.empty()) {
+            int row = q.front().first;
+            int col = q.front().second;
+            q.pop();
+
+            for(int k=0; k<4; k++) {
+                int newRow = row + delRow[k];
+                int newCol = col + delCol[k];
+
+                if(newRow >= 0 && newRow < m && newCol >= 0 && newCol < n && vis[newRow][newCol] == false && grid[newRow][newCol] == '1') {
+                    q.push({newRow, newCol});
+                    vis[newRow][newCol] = true;
+                }
+            }
         }
+        islands++;
     }
+    
+public:
     int numIslands(vector<vector<char>>& grid) {
-        int rows = grid.size();
-        int cols = grid[0].size();
+        int m = grid.size();
+        int n = grid[0].size();
+
+        vector<vector<bool>> vis(m, vector<bool>(n, false));
         int islands = 0;
 
-        for(int i=0; i<rows; i++) {
-            for(int j=0; j<cols; j++) {
-                if(grid[i][j] == '1') {
-                    islands++;
-                    dfs(i, j, grid);
+        for(int i=0; i<m; i++) {
+            for(int j=0; j<n; j++) {
+                if(grid[i][j] == '1' && vis[i][j] == false) {
+                    bfs(i, j, grid, vis, islands, m, n);
                 }
             }
         }
