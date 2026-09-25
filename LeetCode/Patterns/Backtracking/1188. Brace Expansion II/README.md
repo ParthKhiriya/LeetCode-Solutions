@@ -8,8 +8,8 @@
 Hash Table, String, Backtracking, Stack, Breadth-First Search, Sorting
 
 ### 🚀 Performance
-- **Runtime:** N/A
-- **Memory:** N/A
+- **Runtime:** 12 ms
+- **Memory:** 13.5 MB
 
 ---
 
