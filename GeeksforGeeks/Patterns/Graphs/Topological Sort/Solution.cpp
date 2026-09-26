@@ -1,41 +1,38 @@
 class Solution {
-  private: 
-    void dfs(vector<vector<int>>& adjList, vector<bool>& vis, stack<int>& st, int node) {
-        vis[node] = true;
-        
-        for(auto adjNode: adjList[node]) {
-            if(vis[adjNode] == false) {
-                dfs(adjList, vis, st, adjNode);
-            }
-        }
-        
-        st.push(node);
-    }
-    
   public:
     vector<int> topoSort(int V, vector<vector<int>>& edges) {
         // code here
-        int n = V;
-        vector<vector<int>> adjList(n);
-        vector<bool> vis(n, false);
-        vector<int> ans;
+        vector<vector<int>> adjList(V);
+        vector<int> indegree(V);
         
         for(auto edge: edges) {
             int u = edge[0];
             int v = edge[1];
             adjList[u].push_back(v);
+            indegree[v]++;
         }
         
-        stack<int> st;
-        for(int i=0; i<n; i++) {
-            if(!vis[i]) {
-                dfs(adjList, vis, st, i);
+        vector<int> ans;
+        queue<int> q;
+        
+        for(int i=0; i<indegree.size(); i++) {
+            if(indegree[i] == 0) {
+                q.push(i);
+                ans.push_back(i);
             }
         }
         
-        while(!st.empty()) {
-            ans.push_back(st.top());
-            st.pop();
+        while(!q.empty()) {
+            int node = q.front();
+            q.pop();
+            
+            for(auto adjNode: adjList[node]) {
+                indegree[adjNode]--;
+                if(indegree[adjNode] == 0) {
+                    q.push(adjNode);
+                    ans.push_back(adjNode);
+                }
+            }
         }
         
         return ans;
