@@ -20,18 +20,13 @@ public:
 */
 
 class Solution {
-public:
-    Node* cloneGraph(Node* node) {
-        map<Node*, Node*> oldToNew;
-        return dfs(node, oldToNew);
-    }
-
+private: 
     Node* dfs(Node* node, map<Node*, Node*>& oldToNew) {
         if(node == nullptr) {
             return nullptr;
         }
 
-        if(oldToNew.count(node)) {
+        if(oldToNew.find(node) != oldToNew.end()) {
             return oldToNew[node];
         }
 
@@ -43,5 +38,11 @@ public:
         }
 
         return copy;
+    }
+
+public:
+    Node* cloneGraph(Node* node) {
+        map<Node*, Node*> oldToNew;
+        return dfs(node, oldToNew);
     }
 };
