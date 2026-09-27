@@ -17,23 +17,22 @@ public:
         for(int i=0; i<numCourses; i++) {
             if(indegree[i] == 0) {
                 q.push(i);
-                count++;
             }
         }
 
         while(!q.empty()) {
             int node = q.front();
             q.pop();
+            count++;
 
             for(auto adjNode: adjList[node]) {
                 indegree[adjNode]--;
                 if(indegree[adjNode] == 0) {
                     q.push(adjNode);
-                    count++;
                 }
             }
         }
 
-        return count == numCourses ? true : false;
+        return count == numCourses;
     }
 };
