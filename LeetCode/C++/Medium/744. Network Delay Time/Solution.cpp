@@ -32,15 +32,12 @@ public:
             }
         }
 
-        int minTime = -1;
         for(int i=1; i<=n; i++) {
             if(dist[i] == INT_MAX) {
                 return -1;
-            } else {
-                minTime = max(minTime, dist[i]);
             }
         }
 
-        return minTime;
+        return *max_element(dist.begin() + 1, dist.end());
     }
 };
