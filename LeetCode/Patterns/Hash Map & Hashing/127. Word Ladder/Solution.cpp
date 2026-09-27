@@ -3,9 +3,8 @@ public:
     int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
         int n = wordList.size();
         unordered_set<string> st;
-
-        for(auto w: wordList) {
-            st.insert(w);
+        for(auto word: wordList) {
+            st.insert(word);
         }
         st.erase(beginWord);
 
@@ -14,19 +13,19 @@ public:
 
         while(!q.empty()) {
             string word = q.front().first;
-            int numChanges = q.front().second;
+            int dist = q.front().second;
             q.pop();
 
-            if(word == endWord) return numChanges;
+            if (word == endWord) return dist;
 
             for(int i=0; i<word.size(); i++) {
-                int original = word[i];
-
-                for(char ch = 'a'; ch < 'z'; ch++) {
+                char original = word[i];
+                for(char ch = 'a'; ch <= 'z'; ch++) {
                     word[i] = ch;
+
                     if(st.find(word) != st.end()) {
-                        q.push({word, numChanges+1});
                         st.erase(word);
+                        q.push({word, dist+1});
                     }
                 }
                 word[i] = original;
