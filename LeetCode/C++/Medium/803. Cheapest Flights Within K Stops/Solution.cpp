@@ -2,33 +2,32 @@ class Solution {
 public:
     int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int k) {
         vector<vector<pair<int, int>>> adjList(n);
-        for(auto it: flights) {
-            int u = it[0];
-            int v = it[1];
-            int wt = it[2];
+        for(auto flight: flights) {
+            int u = flight[0];
+            int v = flight[1];
+            int wt = flight[2];
             adjList[u].push_back({v, wt});
         }
 
-        queue<pair<int, pair<int, int>>> q;
-        q.push({0, {src, 0}});
-
         vector<int> dist(n, INT_MAX);
+        priority_queue<pair<int, pair<int, int>>, vector<pair<int, pair<int, int>>>, greater<pair<int, pair<int, int>>>> pq;
+
+        pq.push({0, {src, 0}});
         dist[src] = 0;
 
-        while(!q.empty()) {
-            auto it = q.front();
-            q.pop();
-            int steps = it.first;
-            int node = it.second.first;
-            int cost = it.second.second;
+        while(!pq.empty()) {
+            int time = pq.top().first;
+            int node = pq.top().second.first;
+            int stops = pq.top().second.second;
+            pq.pop();
 
-            for(auto it1 : adjList[node]) {
-                int adjNode = it1.first;
-                int weight = it1.second;
+            for(auto it: adjList[node]) {
+                int adjNode = it.first;
+                int edgeW = it.second;
 
-                if(cost + weight < dist[adjNode] && steps <= k) {
-                    dist[adjNode] = cost + weight;
-                    q.push({steps+1, {adjNode, dist[adjNode]}});
+                if(time + edgeW < dist[adjNode] && stops <= k) {
+                    dist[adjNode] = time + edgeW;
+                    pq.push({dist[adjNode], {adjNode, stops+1}});
                 }
             }
         }
