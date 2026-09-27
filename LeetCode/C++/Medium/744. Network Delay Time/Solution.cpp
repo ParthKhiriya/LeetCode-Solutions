@@ -2,39 +2,42 @@ class Solution {
 public:
     int networkDelayTime(vector<vector<int>>& times, int n, int k) {
         vector<vector<pair<int, int>>> adjList(n+1);
-        for(auto it: times) {
-            int src = it[0];
-            int tgt = it[1];
-            int time = it[2];
-            adjList[src].push_back({tgt, time});
+
+        for(auto edge: times) {
+            int u = edge[0];
+            int v = edge[1];
+            int wt = edge[2];
+            adjList[u].push_back({v, wt});
         }
 
-        queue<pair<int, int>> q;
-        q.push({k, 0});
-        vector<int> distance(n+1, INT_MAX);
-        distance[k] = 0;
+        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+        pq.push({0, k});
 
-        while(!q.empty()) {
-            int node = q.front().first;
-            int time = q.front().second;
-            q.pop();
+        vector<int> dist(n+1, INT_MAX);
+        dist[k] = 0;
+
+        while(!pq.empty()) {
+            int node = pq.top().second;
+            int time = pq.top().first;
+            pq.pop();
 
             for(auto it: adjList[node]) {
                 int adjNode = it.first;
                 int edgeW = it.second;
-                if(time + edgeW < distance[adjNode]) {
-                    distance[adjNode] = time + edgeW;
-                    q.push({adjNode, distance[adjNode]});
+
+                if(time + edgeW < dist[adjNode]) {
+                    dist[adjNode] = time + edgeW;
+                    pq.push({dist[adjNode], adjNode});
                 }
             }
         }
 
-        int minTime = 0;
+        int minTime = -1;
         for(int i=1; i<=n; i++) {
-            if(distance[i] == INT_MAX) {
+            if(dist[i] == INT_MAX) {
                 return -1;
             } else {
-                minTime = max(minTime, distance[i]);
+                minTime = max(minTime, dist[i]);
             }
         }
 
