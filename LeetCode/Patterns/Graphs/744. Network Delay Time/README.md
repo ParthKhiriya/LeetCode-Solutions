@@ -8,8 +8,8 @@
 Depth-First Search, Breadth-First Search, Graph Theory, Heap (Priority Queue), Shortest Path, Dijkstra's Algorithm
 
 ### 🚀 Performance
-- **Runtime:** N/A
-- **Memory:** N/A
+- **Runtime:** 93 ms
+- **Memory:** 47.9 MB
 
 ---
 
