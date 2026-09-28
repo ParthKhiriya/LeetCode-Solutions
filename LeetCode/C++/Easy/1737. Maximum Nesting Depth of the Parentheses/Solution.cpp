@@ -6,10 +6,10 @@ public:
         for(auto it: s) {
             if(it == '(') {
                 count++;
-                maxi = max(maxi, count);
             } else if (it == ')') {
                 count--;
             }
+            maxi = max(maxi, count);
         }
         return maxi;
     }
