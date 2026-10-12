@@ -16,7 +16,7 @@ public:
 
             while(left < right) {
                 int sum = nums[i] + nums[left] + nums[right];
-                
+
                 if(sum == 0) {
                     ans.push_back({nums[i], nums[left], nums[right]});
                     left++;
@@ -28,7 +28,7 @@ public:
                     while(left < right && nums[right] == nums[right+1]) {
                         right--;
                     }
-                } else if (sum < 0) {
+                } else if(sum < 0) {
                     left++;
                 } else {
                     right--;
