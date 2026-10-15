@@ -5,14 +5,10 @@ public:
         int ans = 0;
 
         for(int i=0; i<n; i++) {
-            unordered_map<int, bool> mpp;
-            int count = 0;
+            unordered_set<int> st;
             for(int j=i; j<n; j++) {
-                if(mpp.find(nums[j]) == mpp.end() || mpp[nums[j]] == false) {
-                    count++;
-                }
-                mpp[nums[j]] = true;
-                ans += count*count;
+                st.insert(nums[j]);
+                ans += st.size() * st.size();
             }
         }
 
